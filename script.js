@@ -17,16 +17,18 @@ function returnMovies(url){
             const div_card = document.createElement('div');
             div_card.setAttribute('class', 'card');
 
-            const div_row = document.createElement('div');            div_card.setAttribute('class', 'row');
+            const div_row = document.createElement('div');            
+            div_row.setAttribute('class', 'row');
 
-            const div_column = document.createElement('div');            div_card.setAttribute('class', 'column');
+            const div_column = document.createElement('div');            
+            div_column.setAttribute('class', 'column');
 
             const image = document.createElement('img');
-            div_card.setAttribute('class', 'thumbnail');
-            div_card.setAttribute('id', 'image');
+            image.setAttribute('class', 'thumbnail');
+            image.setAttribute('id', 'image');
 
             const title = document.createElement('h3');
-            div_card.setAttribute('id', 'title');
+            title.setAttribute('id', 'title');
 
             const center = document.createElement('center');
 
@@ -47,7 +49,7 @@ function returnMovies(url){
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
-    main.innerHTML = ''
+    main.innerHTML = '';
 
     const searchItem = search.ariaValue;
 
