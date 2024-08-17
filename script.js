@@ -47,14 +47,14 @@ function returnMovies(url){
     });
 }
 
-form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    main.innerHTML = '';
+form.addEventListener("submit", (e) => { //A função addEventListener está configurando o formulário para escutar o evento de envio.
+    e.preventDefault(); //impede que a página seja recarregada quando o formulário é enviado.
+    main.innerHTML = ''; //O conteúdo do elemento main é limpo para que novos resultados de busca possam ser adicionados.
 
-    const searchItem = search.ariaValue;
+    const searchItem = search.value; //O valor do campo de entrada (search.value) é obtido para determinar o que o usuário está buscando.
 
     if (searchItem) {
-        returnMovies(SEARCHAPI + searchItem);
+        returnMovies(SEARCHAPI + searchItem); //se o usuário digitou algo, a função returnMovies é chamada com a URL atualizada para incluir o termo de busca, iniciando uma nova requisição para obter resultados.
     }
 
 })
