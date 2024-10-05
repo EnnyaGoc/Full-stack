@@ -2,7 +2,7 @@
 
 import app from "./server.js" //Importa a aplicação Express configurada no arquivo server.js, que provavelmente contém as rotas e middlewares.
 import mongodb from "mongodb" //Importa o pacote oficial do MongoDB para Node.js, que permite interagir com um banco de dados MongoDB.
-//import ReviewsDAO from "./dao/reviewsDAO.js"
+import ReviewsDAO from "./dao/reviewsDAO.js"
 
 const MongoClient = mongodb.MongoClient //Cria uma instância do cliente MongoDB, que será usada para se conectar ao banco de dados.
 //const mongo_username = process.env['MONGO_USERNAME']
@@ -24,6 +24,7 @@ MongoClient.connect( //Estabelece a conexão com o MongoDB usando a URI fornecid
         process.exit(1)
     })
     .then(async client => { //Caso a conexão com o banco de dados seja bem-sucedida, o servidor Express começa a escutar na porta definida (8000).
+        await ReviewsDAO.injectDB(cliente)
         app.listen(port, () => { // Inicia o servidor Express e faz com que ele escute requisições na porta 8000.
             console.log(`listening on port ${port}`)
         })
