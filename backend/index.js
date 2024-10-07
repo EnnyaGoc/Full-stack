@@ -24,7 +24,7 @@ MongoClient.connect( //Estabelece a conexão com o MongoDB usando a URI fornecid
         process.exit(1)
     })
     .then(async client => { //Caso a conexão com o banco de dados seja bem-sucedida, o servidor Express começa a escutar na porta definida (8000).
-        await ReviewsDAO.injectDB(cliente)
+        await ReviewsDAO.injectDB(client)
         app.listen(port, () => { // Inicia o servidor Express e faz com que ele escute requisições na porta 8000.
             console.log(`listening on port ${port}`)
         })

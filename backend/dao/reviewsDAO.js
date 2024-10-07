@@ -1,5 +1,5 @@
 import mongodb from "mongodb"
-const ObjectId = mongodb.ObjectId
+const ObjectId = mongodb.ObjectID
 
 let reviews
 
@@ -32,14 +32,14 @@ export default class ReviewsDAO{
 
     static async getReview(reviewId){
         try {
-            return await reviews.findtOne({ _id: ObjectId(reviewId)})
+            return await reviews.findOne({ _id: ObjectId(reviewId) })
         } catch (e) {
             console.error(`Unable to get review: ${e}`)
-            return { error: e}
+            return { error: e }
         }
     }
 
-    static async updateReview(movieId, user, review){
+    static async updateReview(reviewId, user, review){
         try {
             const updateResponse = await reviews.updateOne(
                 { _id: ObjectId(reviewId)},
@@ -66,14 +66,14 @@ export default class ReviewsDAO{
         }
     }
 
-    static async getReviewByMovieId(movieId){
+    static async getReviewsByMovieId(movieId) {
         try {
-            const cursor = await reviews.find({movieId: parseInt(movieId) })
-
+            const cursor = await reviews.find({ movieId: parseInt(movieId) }) // Certifique-se de que o movieId é um número
             return cursor.toArray()
         } catch (e) {
-            console.error(`Unable to get review: ${e}`)
-            return { error: e}
+            console.error(`Unable to get reviews: ${e}`)
+            return { error: e }
         }
     }
+    
 }
