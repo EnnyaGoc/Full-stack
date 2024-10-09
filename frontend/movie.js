@@ -40,5 +40,46 @@ function returnReviews(url){
     });
 }
 
+function editReview(id, review, user) {
+    const element = document.getElementById(id);
+    const reviewInputId = "review" + id
+    const userInputId = "user" + id
+
+    element.innerHTML = `
+            <p><strong>Review: </strong>
+            <input type="text" id="${reviewInputId}" value="${review}">
+            </p>
+            <p><strong>User: </strong>
+            <input type="text" id="${userInputId}" value="${user}">
+            </p>
+            <p>
+            <a href="#" onclick="saveReview('${reviewInputId}','${userInputId}',)">salvar</a>
+            </p>
+    `
+
+}
+
+function saveReview(reviewInputId, userInputId, id="") {
+    const review = document.getElementById(reviewInputId).value;
+    const user = document.getElementById(userInputId).value;
+
+    id (id){
+        fetch(APILINK + id, {
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({"user": user, "review": review, "movieId": movieId})
+        }).then(res => res.json())
+            .then(res => {
+                console.log(res)
+                location.reload();
+            });
+    }
+}
+
+
+
 
 
